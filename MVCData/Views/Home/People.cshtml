@@ -1,33 +1,8 @@
 ﻿@model PeopleViewModel
 
 <div id="people">
-    <h1>Personer</h1>
+    <partial name="_People.cshtml" model="Model">
 
-    <table id="table">
-        <tr>
-            <th>Namn</th>
-            <th>Telefonnummer</th>
-            <th>Stad</th>
-        </tr>
-        @foreach (Person p in Model.People)
-        {
-            <tr>
-                <td>@p.Name</td>
-
-                <td>@p.PhoneNumber</td>
-
-                <td>@p.City</td>
-
-            </tr>
-        }
-    </table>
-    }
-
-    <form asp-action="People" method="post">
-        <label asp-for="SearchString">Sök på stad: </label>
-        <input asp-for="SearchString" />
-        <button type="submit">Filtrera på stad</button>
-    </form>
 
 </div>
 

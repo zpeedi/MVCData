@@ -1,10 +1,5 @@
 ﻿@model PeopleViewModel
 
-<div id="people">
-    <partial name="_People.cshtml" model="Model">
-
-
-</div>
 
 <div id="create">
     <h1>Create</h1>
@@ -27,3 +22,16 @@
         <button type="reset">Rensa</button>
     </form>
 </div>
+
+<div id="peopleList">
+
+
+</div>
+
+<a asp-controller="Home" asp-action="PeopleList" data-target="peopleList" id="people" >People</a>
+<a asp-controller="Home" asp-action="Delete" data-target="peopleList" id="delete" asp-route-id="1">Delete</a>
+<a asp-controller="Home" asp-action="Details" data-target="peopleList" id="details" asp-route-id="1">Details</a>
+<input type="text" id="findId" />
+<script>
+    init();
+</script>

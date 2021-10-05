@@ -16,11 +16,47 @@ namespace MVCData.Controllers
             service = new PeopleService();
 
         }
+
+        [HttpGet]
+        public IActionResult Search(string searchString)
+        {
+            PeopleViewModel search = service.All();
+            search.SearchString = searchString;
+            if (String.IsNullOrEmpty(search.SearchString))
+            {
+                return PartialView("_People", service.All());
+            }
+            else
+            {
+                return PartialView("_People", service.FindBy(search));
+
+            }
+        }
+        [HttpGet]
+        public IActionResult PeopleList()
+        {
+            return PartialView("_People", service.All());
+        }
+
+        [HttpGet]
+        public IActionResult Details(int id)
+        {
+            System.Diagnostics.Debug.WriteLine("Details " + id);
+            return PartialView("_Details", service.All());
+        }
+
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            System.Diagnostics.Debug.WriteLine("Delete " + id);
+            return PartialView("_Delete", service.All());
+        }
         [HttpGet]
         public IActionResult People()
         {
-            return View("People",service.All());
+            return View("People");
         }
+        /*
         [HttpPost]
         public IActionResult People(PeopleViewModel peopleViewModel)
         {
@@ -36,7 +72,7 @@ namespace MVCData.Controllers
                 return View("People", service.FindBy(search));
 
             }
-        }
+        }*/
         [HttpGet]
         public IActionResult Create()
         {
